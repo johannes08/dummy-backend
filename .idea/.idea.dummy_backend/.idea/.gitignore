@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/projectSettingsUpdater.xml
+/modules.xml
+/contentModel.xml
+/.idea.dummy_backend.iml
+# Datasource local storage ignored files
+/../../../../../../../../:\Users\Johannes\RiderProjects\dummy_backend\.idea\.idea.dummy_backend\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
