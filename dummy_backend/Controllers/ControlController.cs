@@ -26,7 +26,7 @@ namespace dummy_backend.Controllers
             var message = new HttpRequestMessage
             {
                 Method = HttpMethod.Get,
-                RequestUri = new Uri($"http://93.198.0.62:61299/?{status}")
+                RequestUri = new Uri($"http://192.168.188.195/?{status}")
             };
 
             try
