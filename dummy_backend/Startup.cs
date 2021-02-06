@@ -38,11 +38,6 @@ namespace dummy_backend
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "dummy_backend", Version = "v1"});
             });
 
-            services.Configure<ForwardedHeadersOptions>(options =>
-            {
-                options.KnownProxies.Add(IPAddress.Parse("192.168.188.170"));
-            });
-
 
         }
 
@@ -57,10 +52,6 @@ namespace dummy_backend
             }
 
             // To run with apache proxy
-            app.UseForwardedHeaders(new ForwardedHeadersOptions()
-            {
-                ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
-            });
 
             app.UseHttpsRedirection();
 

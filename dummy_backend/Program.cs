@@ -24,7 +24,7 @@ namespace dummy_backend
                     webBuilder
                         .UseKestrel()
                         .UseContentRoot(Directory.GetCurrentDirectory())
-                        .UseUrls("http://*:5002;https://*:5003")
+                        .UseUrls("http://*:5000;https://*:5001")
                         .UseStartup<Startup>();
                 });
     }
