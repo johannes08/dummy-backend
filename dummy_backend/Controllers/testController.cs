@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using dummy_backend.Interfaces;
+using dummy_backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -24,13 +25,25 @@ namespace dummy_backend.Controllers
         [HttpGet]
         public async Task<IActionResult> Test([FromQuery] int status)
         {
-            return Ok("Hello World!");
+            return Ok(await _testRepository.Get());
         }
 
         [HttpPost]
-        public async Task<IActionResult> TestPost()
+        public async Task<IActionResult> TestPost([FromBody] EntryDto entryDto)
         {
-            await _testRepository.test();
+            return Ok(await _testRepository.Post(entryDto));
+        }
+        
+        [HttpPatch]
+        public async Task<IActionResult> TestPost([FromBody] Entry entry)
+        {
+            return Ok(await _testRepository.Patch(entry));
+        }
+        
+        [HttpDelete]
+        public async Task<IActionResult> TestPost([FromQuery] int id)
+        {
+            await _testRepository.Delete(id);
             return Ok();
         }
     }
