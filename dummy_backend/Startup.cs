@@ -5,6 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using dummy_backend.Controllers;
+using dummy_backend.Helper.SQL;
+using dummy_backend.Interfaces;
+using dummy_backend.Repositorys;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
@@ -30,7 +33,13 @@ namespace dummy_backend
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<SqlCredentials>(Configuration.GetSection("SqlCredentials"));
+            
             services.AddHttpClient<ControlController>();
+
+            services.AddSingleton<ISqlConnectionProvider, SqlConnectionProvider>();
+
+            services.AddSingleton<ITestRepository, TestRepository>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
