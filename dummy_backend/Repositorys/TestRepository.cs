@@ -23,7 +23,7 @@ namespace dummy_backend.Repositorys
 
             using (var con = await _connectionProvider.GetConnection())
             {
-                var res = con.Query<Entry>("SELECT * FROM TestEntry");
+                var res = con.Query<Entry>("SELECT * FROM Dummy");
 
                 entries = res.ToList();
             }
@@ -34,8 +34,8 @@ namespace dummy_backend.Repositorys
         public async Task<Entry> Post(EntryDto entry)
         {
             const string query =
-                @"INSERT INTO main.TestEntry (Name, Description) VALUES (@Name, @Description);
-                  SELECT * FROM main.testentry where Id = LAST_INSERT_ID();";
+                @"INSERT INTO dbo.dummy (Name, Description) VALUES (@Name, @Description);
+                  SELECT * FROM dbo.dummy where Id = LAST_INSERT_ID();";
 
             Entry newEntry;
             
@@ -50,11 +50,11 @@ namespace dummy_backend.Repositorys
         public async Task<Entry> Patch(Entry entry)
         {
             const string query =
-                @"Update main.TestEntry SET 
+                @"Update dbo.Dummy SET 
                           NAME = IFNULL(@Name, Name),
                           Description = IFNULL(@Description, Description) 
                           where Id = @Id;
-                  SELECT * FROM main.TestEntry where Id = @Id";
+                  SELECT * FROM dbo.dummy where Id = @Id";
 
             Entry newEntry;
             
@@ -68,7 +68,7 @@ namespace dummy_backend.Repositorys
         
         public async Task Delete(int id)
         {
-            const string query = "Delete From main.TestEntry where Id = @Id;";
+            const string query = "Delete From dbo.dummy where Id = @Id;";
 
             using (var con = await _connectionProvider.GetConnection())
             {
