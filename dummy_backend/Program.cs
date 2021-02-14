@@ -22,7 +22,7 @@ namespace dummy_backend
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder
-                        .UseKestrel()
+                        // .UseKestrel()
                         .UseContentRoot(Directory.GetCurrentDirectory())
                         .UseUrls("http://*:5000;https://*:5001")
                         .UseStartup<Startup>();
