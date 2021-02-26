@@ -26,7 +26,7 @@ namespace dummy_backend.Helper.SQL
             
             _logger.LogInformation($"Try to get mariadb connection: {_SqlCredentials.ConnectionString}");
             
-            var connection = new MySqlConnection(_SqlCredentials.ConnectionString);
+            var connection = new MySqlConnection("Server=localhost;Database=dbo;Uid=dotnet;Pwd=dotnet;");
             await connection.OpenAsync();
             
             _logger.LogInformation($"Connection Opened successfully: {_SqlCredentials.ConnectionString}");
